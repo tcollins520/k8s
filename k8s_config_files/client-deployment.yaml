@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: server-deployment
+  name: client-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      component: server
+      component: web
   template:
     metadata:
       labels:
-        component: server
+        component: web
     spec:
       containers:
-        - name: server
-          image: rallycoding/multi-server-dev
+        - name: client
+          image: rallycoding/multi-client
           ports:
-            - containerPort: 5000
+            - containerPort: 3000

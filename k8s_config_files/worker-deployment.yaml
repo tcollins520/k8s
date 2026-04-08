@@ -1,21 +1,17 @@
-apiVersion: apps/v1 
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: worker-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       component: worker
-  # template for the pods
   template:
     metadata:
-    # labels and selector should match this is how the deployment identifies the pods it manages
       labels:
         component: worker
-    # specification for the pod (containers) that will be created by this deployment
     spec:
-    # provides the configuration for the container that will run in the pod
       containers:
-      - name: worker
-        image: tcollins520/multi-worker
+        - name: worker
+          image: rallycoding/multi-worker
