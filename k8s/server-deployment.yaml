@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: server
+  # template for the pods
+  template:
+    metadata:
+    # labels and selector should match this is how the deployment identifies the pods it manages
+      labels:
+        component: server
+    # specification for the pod (containers) that will be created by this deployment
+    spec:
+    # provides the configuration for the container that will run in the pod
+      containers:
+      - name: server
+        image: tcollins520/multi-server
+        ports:
+        - containerPort: 5000
+
