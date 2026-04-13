@@ -12,6 +12,7 @@ spec:
       labels:
         component: postgres
     spec:
+    # tell the pod after its created to use the persistent volume claim as a long term storage solution for the postgres database
       volumes:
         - name: postgres-storage
           persistentVolumeClaim:
@@ -21,6 +22,7 @@ spec:
           image: postgres
           ports:
             - containerPort: 5432
+          # tell the container to mount the persistent volume claim to the /var/lib/postgresql directory in the container, and to use the postgres subdirectory of the persistent volume claim for storage
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql
